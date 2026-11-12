@@ -1,40 +1,49 @@
-# ECU SOFT — Agent Plugins
+# ECU SOFT Tools
 
-**Official ECU SOFT Python tools for local AI agents.**
+**Local MCP tools for AI agents · ECU SOFT · Free preview**
 
-### ECU SOFT Tools · Local MCP v0.2.1 (Free Preview)
+The public repository is the **official documentation, capability catalog and MCPB download center** for ECU SOFT Tools. Original engineering source and internal tests live in a separate **private** repository. The downloadable MCPB includes the local execution code intended for end users; it is an inspectable archive.
 
-[**Download local MCPB**](ECU-SOFT-Tools-Local-MCP-v0.2.1.mcpb) · [**Complete install guide (English + عربي)**](ECU-SOFT-TOOLS-LOCAL-MCP.md) · [SHA-256 verification](SHA256SUMS.txt)
+## Latest local MCP release — v0.3.0
 
-ECU SOFT Tools is a **local Python MCP stdio server** that lets agents discover a growing catalog of ECU SOFT Python capabilities from this repository. The server itself runs **on the user's computer**, not in the cloud. GitHub access is used for outbound catalog synchronization and approved source downloads; cached metadata is available offline.
+[**Download ECU SOFT Tools v0.3.0 (.mcpb)**](ECU-SOFT-Tools-Local-MCP-v0.3.0.mcpb)
 
-**Compatible installation paths:**
-- **Watcher Eye:** Plugins → Add → Install MCPB bundle → Preview → Install → Use in chat. **Tested**.
-- **Claude Desktop:** Settings → Desktop app → Extensions → Advanced settings → Install Extension…; select the `.mcpb`.
-- **ChatGPT Desktop:** register the extracted `runtime/mcp_server.py` as a **local STDIO MCP server**, on supported desktop versions.
-- **Codex CLI:** `codex mcp add ecusoft -- python3 /absolute/path/to/runtime/mcp_server.py`.
-- **Claude Code:** `claude mcp add --transport stdio --scope user ecusoft -- python3 /absolute/path/to/runtime/mcp_server.py`.
-- **OpenCode:** add a `type: "local"` MCP entry using `["python3", "/absolute/path/to/runtime/mcp_server.py"]`.
-- **Ollama:** use an MCP-capable **agent/front end** (e.g. OpenCode with an Ollama model). Ollama alone is not the MCP client.
+[**Install and usage instructions**](ECU-SOFT-TOOLS-LOCAL-MCP-v0.3.0.md) · [SHA-256 verification](SHA256SUMS-v0.3.0.txt)
 
-**Not supported:** ChatGPT Web or Claude Web running this local `.mcpb` directly; no hosted HTTPS MCP endpoint is shipped.
+The distribution contains **3 local engines and 29 discoverable capabilities**:
 
-**Current catalog:** 2 Python plugins, 6 read-only capabilities (binary metadata plus Toyota ECU BIN inspection), with dynamic additions from GitHub. The MCP server exposes `ecusoft_list_tools`, `ecusoft_get_tool`, `ecusoft_sync`, `ecusoft_run_local` and two optional, separately configured GitHub Actions functions.
+| Tool | Capabilities | Functions |
+| --- | ---: | --- |
+| **IVECO Suite Pro** | 23 | 8 source-defined VCM profiles, speed and fan-temperature inspection, calibration and ABS/EBS checks, Bosch EDC17CV41 and EDC7UC31 DTC and System OFF functions. Nine candidate edits are approval-gated. |
+| **Toyota BIN Inspector** | 5 | Read-only identification, BIN metadata, speed, RPM and cut-off observations |
+| **Binary Inspector** | 1 | Read-only file metadata and SHA-256 |
 
-**Safety:** downloaded Python execution is **disabled by default** and requires explicit permission per call if later enabled. Local Python code execution is **not a sandbox**. The package is currently **free**, without subscription billing.
+**IVECO Suite Pro**: on EDC17CV41 System OFF, the additional **Switches OFF** layer defaults to ON for eligible AdBlue, DPF and EGR requests. An incomplete structural verification blocks saving the candidate. No direct ECU flashing, no source BIN overwrite.
 
-For prerequisites, exact setup instructions, Windows paths, diagnostics, privacy and limitations, **read the [complete local MCP guide](ECU-SOFT-TOOLS-LOCAL-MCP.md)**.
+**Catalog-only GitHub access:** Watcher or any compatible MCP agent can discover manifests under plugins/; executable Python engines are included in the MCPB. A new engine version requires an updated MCPB, not a public source-tree checkout. A public manifest alone does not grant execution authorization.
 
----
+## How to connect
 
-## Repository documentation
+- **Watcher Eye:** Plugins → Add → Install MCPB bundle → Preview → Install → Use in chat
+- **Claude Desktop:** On compatible versions, import the MCPB as a local desktop extension
+- **Codex CLI / Claude Code / OpenCode:** Extract the MCPB and register the local stdio command using Python and the absolute runtime/mcp_server.py path
+- **Ollama:** Needs an MCP-capable agent/front end to connect the local model to these tools
+- **ChatGPT Web / Claude Web:** Cannot directly run this local stdio MCPB; there is no public hosted MCP URL
 
-- [Agent integration guide](AGENT_INTEGRATION_GUIDE.md)
-- [MCP reference](MCP.md)
-- [OpenCode setup](OPENCODE.md)
-- [Watcher Eye setup](WATCHER_EYE.md)
-- [REST discovery and Python host](REST_AND_PYTHON.md)
-- [Offline mode and security](OFFLINE_AND_SECURITY.md)
-- [Contributor documentation](CONTRIBUTING.md)
+See the **[full guide](ECU-SOFT-TOOLS-LOCAL-MCP-v0.3.0.md)** for exact commands, Windows support and the permission controls.
 
-**Publisher:** ECU SOFT · Local-first AI tools.
+## Public / private policy
+
+**Public:** README, descriptive plugin.json manifests, user documentation, reviewed distribution bundles and checksums.
+
+**Private:** original Python engineering repositories, source development, proprietary templates, internal tests and release artifacts. Do not commit access tokens or user firmware.
+
+**Safety:** local code execution is off by default and requires explicit per-call approval. Candidate file creation requires a second host-level opt-in, an approved request, and a new output path; it is not a sandbox.
+
+**Transition:** older public Python source paths for Toyota/Binary are temporarily retained so v0.2.x clients do not fail during migration. They are scheduled for removal only after the local bundled v0.3.0 client has been adopted. Historical commits/clones cannot be made private by deleting files.
+
+## بالعربية
+
+**ECU SOFT Tools** بتعرض إمكانيات الأدوات على GitHub العام، وملف **MCPB** قابل للتنزيل. أما السورس الأصلي للإنتاج فهو محفوظ في مستودع **Private**. حزمة MCPB نفسها تحتوي على نسخة تشغيل محلية من الأدوات، وده مقصود. أحدث نسخة v0.3.0 بتضم **IVECO Suite Pro**، وأدوات Toyota وBinary Inspector. التشغيل الفعلي أو تعديل BIN بيحتاج موافقة وصلاحيات إضافية؛ مجرد اكتشاف الأداة لا يعدّل أي ملف.
+
+© ECU SOFT · All rights reserved for proprietary tool engines; public connector components may carry separate licenses.
