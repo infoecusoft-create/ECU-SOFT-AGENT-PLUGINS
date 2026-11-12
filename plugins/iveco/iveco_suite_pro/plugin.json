@@ -1,0 +1,261 @@
+{
+  "id": "iveco_suite_pro",
+  "name": "IVECO Suite Pro",
+  "version": "0.1.0",
+  "description": "ECU SOFT IVECO local Python diagnostic toolkit from IVECO Suite Pro 3.6.1 source. Source-defined 8 VCM family identifiers, EDC17CV41 and EDC7UC31; explicit candidate-only modifications after approval.",
+  "category": "iveco",
+  "supported_extensions": [
+    ".bin",
+    ".ori",
+    ".mod"
+  ],
+  "entry_point": "iveco_plugin:execute",
+  "capabilities": [
+    {
+      "id": "iveco.detect_controller",
+      "action": "detect_controller",
+      "description": "Detect VCM or Bosch EDC controller using verified binary evidence.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_vcm",
+      "action": "inspect_vcm",
+      "description": "Inspect VCM family, current speed, fan-temperature settings, calibration fields, and ABS/EBS mode.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_vcm_speed",
+      "action": "inspect_vcm_speed",
+      "description": "Inspect the detected VCM speed-limiter profile and actual current speed.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_vcm_temperature",
+      "action": "inspect_vcm_temperature",
+      "description": "Inspect VCM temperature/fan calibration.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_vcm_calibration",
+      "action": "inspect_vcm_calibration",
+      "description": "Inspect VIN/VAN/PIC/engine-type calibration fields.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_vcm_abs_ebs",
+      "action": "inspect_vcm_abs_ebs",
+      "description": "Read ABS/EBS configuration and conversion readiness.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_edc7_speed",
+      "action": "inspect_edc7_speed",
+      "description": "Inspect Bosch EDC7UC31 speed limiter.",
+      "input": {
+        "file_path": "string",
+        "manual_alphacode": "string?"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.scan_edc7_dtcs",
+      "action": "scan_edc7_dtcs",
+      "description": "Read EDC7UC31 DTC entries and statuses.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.scan_edc17_dtcs",
+      "action": "scan_edc17_dtcs",
+      "description": "Read EDC17CV41 DTC entries and statuses.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.scan_edc7_systems",
+      "action": "scan_edc7_systems",
+      "description": "Read EDC7UC31 System OFF status for LAMBDA, TVA, ADBLUE, DPF.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.scan_edc17_systems",
+      "action": "scan_edc17_systems",
+      "description": "Read EDC17CV41 System OFF status for LAMBDA, TVA, ADBLUE, DPF, EGR, FLAPS.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.list_supported_systems",
+      "action": "list_supported_systems",
+      "description": "List source-defined VCM/EDC controllers, systems and switches coverage.",
+      "input": {},
+      "mode": "read"
+    },
+    {
+      "id": "iveco.list_immo_classifications",
+      "action": "list_immo_classifications",
+      "description": "List VCM IMMO classifications for diagnostics only; no bypass generated.",
+      "input": {},
+      "mode": "read"
+    },
+    {
+      "id": "iveco.inspect_immo_compatibility",
+      "action": "inspect_immo_compatibility",
+      "description": "Determine IMMO classification compatibility for detected VCM, without bypass.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "id": "iveco.set_vcm_speed",
+      "action": "set_vcm_speed",
+      "description": "Build VCM speed change candidate; requires explicit approval.",
+      "input": {
+        "file_path": "string",
+        "speed_kmh": "number",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.set_vcm_temperature",
+      "action": "set_vcm_temperature",
+      "description": "Build VCM fan-temperature change candidate; requires explicit approval.",
+      "input": {
+        "file_path": "string",
+        "temp_c": "number",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.set_vcm_calibration",
+      "action": "set_vcm_calibration",
+      "description": "Build VCM calibration fields candidate, validated.",
+      "input": {
+        "file_path": "string",
+        "fields": "object",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.convert_ebs_to_abs",
+      "action": "convert_ebs_to_abs",
+      "description": "Build ABS conversion candidate for validated VCM.",
+      "input": {
+        "file_path": "string",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.set_edc7_speed",
+      "action": "set_edc7_speed",
+      "description": "Build EDC7UC31 speed limiter candidate (40–160 km/h).",
+      "input": {
+        "file_path": "string",
+        "speed_kmh": "number",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.set_edc7_dtcs",
+      "action": "set_edc7_dtcs",
+      "description": "Build EDC7UC31 DTC ON/OFF candidate.",
+      "input": {
+        "file_path": "string",
+        "codes": "array[string]",
+        "state": "string?",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.set_edc17_dtcs",
+      "action": "set_edc17_dtcs",
+      "description": "Build EDC17CV41 DTC ON/OFF candidate.",
+      "input": {
+        "file_path": "string",
+        "codes": "array[string]",
+        "state": "string?",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.system_off_edc7",
+      "action": "system_off_edc7",
+      "description": "Build EDC7UC31 systems-off candidate for selected systems.",
+      "input": {
+        "file_path": "string",
+        "systems": "array[string]",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "iveco.system_off_edc17",
+      "action": "system_off_edc17",
+      "description": "Build EDC17CV41 systems-off candidate; Switches OFF defaults ON for ADBLUE/DPF/EGR, requires full-system verification.",
+      "input": {
+        "file_path": "string",
+        "systems": "array[string]",
+        "switches_off": "boolean?",
+        "approved": "boolean?",
+        "output_path": "string?"
+      },
+      "mode": "write"
+    }
+  ],
+  "permissions": [
+    "filesystem.read_input",
+    "filesystem.write_output_requires_approval"
+  ],
+  "trust": "untrusted",
+  "publisher": "ECU SOFT",
+  "execution": {
+    "local_only": true,
+    "automatic_flash": false,
+    "overwrite_input": false,
+    "system_off_edc17_switches_default": true,
+    "write_requires_explicit_approval": true
+  }
+}
