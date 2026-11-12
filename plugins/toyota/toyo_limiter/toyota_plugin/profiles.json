@@ -1,0 +1,249 @@
+{
+  "source": "نص ملصق.txt",
+  "profiles": [
+    {
+      "id": "hilux_GIN2_22",
+      "source_name": "hilux_GIN2_22",
+      "EXPECTED_SIZE": 753664,
+      "PATTERN_START": "50 58 60 64 68 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "05 3C 50 64 78 80 28 28 28 28 28 00 00 00 00 00 FF 7F 03 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 7A 00 DC 02 F4 00 7A 00 00 06 C0 00 00 01 0A 00",
+      "CUT_PATTERN": "08 00 00 00 00 12 00 13 00 14 00 18 00 1A 00 1B 80 1B 00 1C",
+      "_source_conflict": false
+    },
+    {
+      "id": "Tandra_gin1_0k",
+      "source_name": "Tandra_gin1_0k",
+      "EXPECTED_SIZE": 786432,
+      "PATTERN_START": "B8 00 00 00 0C 20 28 30 38 40 48 4C 50 58 60 64 68 B8 B8 5F 73 60 68 5E 58 5C 76 B8 B8 00 00 00",
+      "SPEED_LENGTH": 2,
+      "RPM_PATTERN_START": "0F 00 00 00 05 3C 50 64 78 80 28 28 28 28 28 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 7A 00 DC 02 F4 00 7A 00 00 08 C0 00 00 01 0A 00 66 00 66 00",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "Hilux_GIN1",
+      "source_name": "Hilux_GIN1",
+      "EXPECTED_SIZE": 1310720,
+      "PATTERN_START": "1F 00 0A 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "00 00 00 FF 7F 03 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 0A 00 30 00",
+      "CUT_PATTERN": "07 00 00 00 E0 FF F0 FF 00 00 20 00 40 00 60 00 80 00",
+      "_source_conflict": false
+    },
+    {
+      "id": "krola_GIN2",
+      "source_name": "krola_GIN2",
+      "EXPECTED_SIZE": 1572864,
+      "PATTERN_START": " C0 00 1A 00 06 18 80 02 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "00 3C 00 37 00 32 00 2D 00 28",
+      "RPM_PATTERN_END": "06 04 02 08 10 18 30 50 54 89",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "Hilux_GIN2_1",
+      "source_name": "Hilux_GIN2_1",
+      "EXPECTED_SIZE": 1572864,
+      "PATTERN_START": "1F 00 0A 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "FF 7F 03 00 FB 01 80 0C 33 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 0A 00 30 00 66",
+      "CUT_PATTERN": " 07 00 00 00 00 00 0C 02 88 03 7A 05 80 08 7F 0A 7D 0E",
+      "_source_conflict": false
+    },
+    {
+      "id": "Hilux_GIN2",
+      "source_name": "Hilux_GIN2",
+      "EXPECTED_SIZE": 1572864,
+      "PATTERN_START": "1F 00 0A 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "FF 7F 03 00 FB 01 80 0C 33 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 0A 00 30 00 66",
+      "CUT_PATTERN": "07 00 00 00 00 16 00 18 00 19 00 1A 00 1B 00 1C 00 1d",
+      "_source_conflict": false
+    },
+    {
+      "id": "Shas_GIN213",
+      "source_name": "Shas_GIN213",
+      "EXPECTED_SIZE": 753664,
+      "PATTERN_START": "23 1F 00 03 00 00 00 00 00 00 00 1F 00 0A 00 00 00 00 3C 00 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "80 84 12 14 17 17 17 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 00 00 00 7A 00 E8 01 31 01 7A 00",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "Shas_GIN21",
+      "source_name": "Shas_GIN21",
+      "EXPECTED_SIZE": 753664,
+      "PATTERN_START": "20 00 00 00 33 23 08 00 03 00 00 00 00 00 00 00 1F 00 0A 00 00 00 00 3C 00 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "80 84 12 14 17 17 17 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 00 00 00 7A 00 E8 01 31 01 7A 00",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "Shas_GIN1",
+      "source_name": "Shas_GIN1",
+      "EXPECTED_SIZE": 753664,
+      "PATTERN_START": "68 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 B8 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "00 ff 7F 03 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 7A 00",
+      "CUT_PATTERN": "00 00 08 00 00 00 00 12 00 13 00 14 00 18 00 1A 00 1B 80 1B 00 1C",
+      "_source_conflict": false
+    },
+    {
+      "id": "Shas_GIN2",
+      "source_name": "Shas_GIN2",
+      "EXPECTED_SIZE": 753664,
+      "PATTERN_START": "0f 0F 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "00 ff 7F 03 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 7A 00",
+      "CUT_PATTERN": "FF 03 08 00 00 00 00 12 00 13 00 14 00 18 00 1A 00 1B 80 1B 00 1C",
+      "_source_conflict": false
+    },
+    {
+      "id": "forchenar_GIN1",
+      "source_name": "forchenar_GIN1",
+      "EXPECTED_SIZE": 376832,
+      "PATTERN_START": "ff 5c 00 DA FF 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "28 28 28 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 78 00 93 03",
+      "CUT_PATTERN": "10 A4 10 A4 10 A4 10 52 08 29 04 06 00 00 00 E0 FF E8 FF 00 00 40 00 60 00 70 00 A4 10 A4 10 A4 10 A4 10 52 08 29 04 06 00 00 00 E0 FF E8 FF 00 00 40 00 60 00 70 00",
+      "_source_conflict": false
+    },
+    {
+      "id": "forchenar_GIN1_1",
+      "source_name": "forchenar_GIN1_1",
+      "EXPECTED_SIZE": 524288,
+      "PATTERN_START": "ff 5c 00 DA FF 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "28 28 28 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 78 00 93 03",
+      "CUT_PATTERN": "10 A4 10 A4 10 A4 10 52 08 29 04 06 00 00 00 E0 FF E8 FF 00 00 40 00 60 00 70 00 A4 10 A4 10 A4 10 A4 10 52 08 29 04 06 00 00 00 E0 FF E8 FF 00 00 40 00 60 00 70 00",
+      "_source_conflict": false
+    },
+    {
+      "id": "krola_gen1",
+      "source_name": "krola_gen1",
+      "EXPECTED_SIZE": 1015808,
+      "PATTERN_START": "1C 20 30 B4 B4 B4 B4 B4 B4 B4 B4",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "00 00 00 00 0A 00 00 00 00 00 02 00 08 00 81 00 34 01 E0 02 ED 06 0F 0F 2E 2D 9A 96 00 64 00 55 00 46 00 3C 00 37 00 32 00 2D 00 28",
+      "RPM_PATTERN_END": "0A 00 00 00 00 00 02 00 08 00 81 00 34 01 E0 02 ED 06 0F 0F 2E 2D 9A 96 00 64 00 55 00 46 00 3C 00 37 00 32 00 2D 00 28 00 23 00 1E 06 04 02 08 10 18 30 50",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "kamry3",
+      "source_name": "kamry3",
+      "EXPECTED_SIZE": 1015808,
+      "PATTERN_START": "0a 00 00 00 00 3c 00 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "tndra_GIN1_1",
+      "source_name": "tndra_GIN1_1",
+      "EXPECTED_SIZE": 1015808,
+      "PATTERN_START": "0a 00 00 00 00 3c 00 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "tndra_GIN1_2_1",
+      "source_name": "tndra_GIN1_2_1",
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "00 00 B6 01 04 01 00 01 00 00 00 00",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "03 00 FB 01 80 0C 33 00",
+      "RPM_PATTERN_END": "00 00 00 00 00 00 7A 00 DC 02 F4 00 7A 00",
+      "CUT_PATTERN": "08 00 00 00 00 12 00 13 00 14 00 18 00 1A 00 1B 80 1B 00 1C",
+      "_source_conflict": false
+    },
+    {
+      "id": "tndra_GIN1_2",
+      "source_name": "tndra_GIN1_2",
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "33 23 08 00 03 00 00 00 00 00 00 00 1F 00 0A 00 00 00 00 3C 00 00 00 00",
+      "SPEED_LENGTH": 2,
+      "RPM_PATTERN_START": "80 84 12 14 17 17 17 00 00 00 00 00",
+      "RPM_PATTERN_END": "00 1E 00 00 00 00 7A 00 25 02",
+      "CUT_PATTERN": "07 00 00 00 00 16 00 17 00 18 00 19 00 1B 00 1D 00 1E",
+      "_source_conflict": false
+    },
+    {
+      "id": "tacoma_GIN1",
+      "source_name": "tacoma_GIN1",
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "40 00 40 00 00 80 00 00 C0 00 C0 00 00 00 06 18",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "land_croz_GIN1",
+      "source_name": "land_croz_GIN1",
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "5B CD 28 1D 12 0B 08 92 03 96 01",
+      "SPEED_LENGTH": 1,
+      "RPM_PATTERN_START": "80 07 40 00 00 00 00 00 00 1E 03 00 FB 01 80 0C 33 00",
+      "RPM_PATTERN_END": "00 1E 00 00 00 00 00 00 3D 00 DC 02 F4 00 7A 00 0A 00",
+      "CUT_PATTERN": "07 00 00 00 00 16 00 18 00 1A 00 1C 00 1D 80 1D 00 1E",
+      "_source_conflict": false
+    },
+    {
+      "id": "hilux_GIN1_3",
+      "source_name": "hilux_GIN1_3",
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "03 00 00 5c 00 38 00 22 ",
+      "SPEED_LENGTH": 2,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": false
+    },
+    {
+      "id": "hilux_GIN1_3_1__duplicate_1",
+      "source_name": "hilux_GIN1_3_1",
+      "duplicate_variant": 1,
+      "EXPECTED_SIZE": 2097152,
+      "PATTERN_START": "00 25 00 00 00 aa 00 00 00",
+      "SPEED_LENGTH": 2,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": true
+    },
+    {
+      "id": "hilux_GIN1_3_1__duplicate_2",
+      "source_name": "hilux_GIN1_3_1",
+      "duplicate_variant": 2,
+      "EXPECTED_SIZE": 8388608,
+      "PATTERN_START": "fe b7 bf 49 90 40 86 03 fe 2d 6f",
+      "SPEED_LENGTH": 2,
+      "RPM_PATTERN_START": "",
+      "RPM_PATTERN_END": "",
+      "CUT_PATTERN": "",
+      "_source_conflict": true
+    }
+  ]
+}

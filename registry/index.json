@@ -1,32 +1,89 @@
 {
-  "generated_by": "tools/build_index.py",
+  "schema_version": 1,
   "plugins": [
     {
-      "capabilities": [
-        "binary_reading",
-        "file_metadata"
-      ],
-      "category": "binary",
-      "context": {},
-      "description": "Read-only demonstration plugin that reports file size and SHA-256 for binary files. It does not modify input files.",
-      "entry_point": "plugin.py",
-      "file_extensions": [
-        ".bin",
-        ".hex",
-        ".dat"
-      ],
-      "id": "example.binary.inspector",
+      "id": "example_binary_inspector",
       "name": "Example Binary Inspector",
-      "operations": [
-        "inspect_binary"
+      "version": "1.0.0",
+      "description": "Example read-only binary file metadata inspector.",
+      "category": "binary",
+      "supported_extensions": [
+        ".bin"
       ],
-      "permissions": [],
-      "root": "plugins/binary/example_binary_inspector",
-      "sha256": "f2d4c2a5637d88e20c7c7200c8402a4aa2d93cfe2d829e533d84e46d9d329c6a",
-      "status": "active",
-      "trust": "untrusted",
-      "version": "1.0.0"
+      "entry_point": "inspector:execute",
+      "capabilities": [
+        {
+          "id": "binary.inspect_metadata",
+          "action": "inspect_metadata",
+          "description": "Return file size and SHA-256 for a binary file.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        }
+      ],
+      "path": "plugins/binary/example_binary_inspector",
+      "trust": "untrusted"
+    },
+    {
+      "id": "toyo_limiter",
+      "name": "Toyota BIN Inspector",
+      "version": "0.1.0",
+      "description": "Read-only identification and inspection of Toyota ECU BIN files using source-derived size and byte-pattern profiles. Reports raw observations for speed, RPM and cut-off regions without modifying ECU data.",
+      "category": "toyota",
+      "supported_extensions": [
+        ".bin"
+      ],
+      "entry_point": "toyota_plugin.tool:execute",
+      "capabilities": [
+        {
+          "id": "toyota.identify_vehicle",
+          "action": "identify_vehicle",
+          "description": "Identify a Toyota vehicle/profile candidate from BIN size and source byte patterns. Reports ambiguity rather than guessing.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        },
+        {
+          "id": "toyota.inspect_bin",
+          "action": "inspect_bin",
+          "description": "Inspect a supported Toyota BIN and return profile, SHA-256, speed bytes, RPM observation and cut-off region observations.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        },
+        {
+          "id": "toyota.inspect_speed",
+          "action": "inspect_speed",
+          "description": "Read-only inspection of the source-defined speed data region and its raw bytes.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        },
+        {
+          "id": "toyota.inspect_rpm",
+          "action": "inspect_rpm",
+          "description": "Read-only inspection of the source-defined RPM region between its pattern delimiters.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        },
+        {
+          "id": "toyota.inspect_cutoff",
+          "action": "inspect_cutoff",
+          "description": "Read-only inspection of the source-defined cut-off region and observed words.",
+          "input": {
+            "file_path": "string"
+          },
+          "mode": "read"
+        }
+      ],
+      "path": "plugins/toyota/toyo_limiter",
+      "trust": "untrusted"
     }
-  ],
-  "registry_version": "1.0.0"
+  ]
 }

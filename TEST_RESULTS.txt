@@ -1,0 +1,21 @@
+test_discovery_is_metadata_only (test_host.HostTests.test_discovery_is_metadata_only) ... ok
+test_host_executes_read_only_capability (test_host.HostTests.test_host_executes_read_only_capability) ... ok
+test_no_modify_capability_registered (test_host.HostTests.test_no_modify_capability_registered) ... ok
+test_mutation_actions_not_exposed (test_toyota_readonly.ToyotaReadOnlyTests.test_mutation_actions_not_exposed) ... ok
+test_profiles_preserve_duplicate_variant (test_toyota_readonly.ToyotaReadOnlyTests.test_profiles_preserve_duplicate_variant) ... ok
+test_unknown_size_is_not_guessed (test_toyota_readonly.ToyotaReadOnlyTests.test_unknown_size_is_not_guessed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.900s
+
+OK
+test_extension_validation (test_plugin.ToyotaReadOnlyTests.test_extension_validation) ... ok
+test_no_mutation_api (test_plugin.ToyotaReadOnlyTests.test_no_mutation_api) ... ok
+test_profiles_loaded_and_duplicate_preserved (test_plugin.ToyotaReadOnlyTests.test_profiles_loaded_and_duplicate_preserved) ... ok
+test_synthetic_read_only_inspection (test_plugin.ToyotaReadOnlyTests.test_synthetic_read_only_inspection) ... ok
+test_unsupported_size (test_plugin.ToyotaReadOnlyTests.test_unsupported_size) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.010s
+
+OK

@@ -1,17 +1,5 @@
-# Security Model — V1
+# Security model
 
-- Plugins default to `untrusted`.
-- Untrusted plugins are blocked unless explicitly opted in.
-- Declared permissions must be explicitly approved by the caller.
-- Entry-point hashes are checked when a hash is present in the registry.
-- Plugin paths are constrained to their declared plugin root.
-- The example plugin is read-only.
+This V1 host is not a hardened sandbox. Plugins execute in-process after lazy import and therefore must be treated as trusted code. Do not load third-party plugins from untrusted sources in a production agent. Use a separate process/container with OS-level isolation for untrusted extensions.
 
-Limitations:
-- In-process Python execution is not a sandbox.
-- A plugin can access process privileges once imported.
-- SHA-256 does not prove publisher identity.
-- V1 does not yet provide OS-level filesystem, network, CPU, or memory isolation.
-
-Do not run unreviewed plugins in a privileged process. Production deployment
-must add subprocess/container isolation and a publisher-signature trust model.
+The Toyota plugin is restricted to reading `.bin` files. It does not write or modify ECU binaries, execute shell commands, access the network, or access the Windows registry.

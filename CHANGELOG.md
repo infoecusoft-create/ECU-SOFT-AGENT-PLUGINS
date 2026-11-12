@@ -1,8 +1,1 @@
-# Changelog
-
-## 1.0.0 — Initial foundation
-- Single-file Plugin Host API.
-- Metadata-only discovery and lazy loading.
-- Manifest-based registry builder.
-- Read-only binary inspection example.
-- Initial tests, documentation, and CI.
+# Changelog\n\n## 0.1.0\n- Rebuilt V1-style capability registry and lazy-loading host baseline.\n- Added Toyota read-only identification and inspection plugin.\n

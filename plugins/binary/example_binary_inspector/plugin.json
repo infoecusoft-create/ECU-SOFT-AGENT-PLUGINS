@@ -1,51 +1,26 @@
 {
-  "id": "example.binary.inspector",
+  "id": "example_binary_inspector",
   "name": "Example Binary Inspector",
   "version": "1.0.0",
-  "description": "Read-only demonstration plugin that reports file size and SHA-256 for binary files. It does not modify input files.",
+  "description": "Example read-only binary file metadata inspector.",
   "category": "binary",
-  "status": "active",
-  "trust": "untrusted",
-  "operations": [
-    "inspect_binary"
+  "supported_extensions": [
+    ".bin"
   ],
+  "entry_point": "inspector:execute",
   "capabilities": [
-    "binary_reading",
-    "file_metadata"
-  ],
-  "file_extensions": [
-    ".bin",
-    ".hex",
-    ".dat"
-  ],
-  "input_schema": {
-    "type": "object",
-    "required": [
-      "file_path"
-    ],
-    "properties": {
-      "file_path": {
-        "type": "string"
-      }
+    {
+      "id": "binary.inspect_metadata",
+      "action": "inspect_metadata",
+      "description": "Return file size and SHA-256 for a binary file.",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
     }
-  },
-  "output_schema": {
-    "type": "object",
-    "required": [
-      "size_bytes",
-      "sha256"
-    ]
-  },
-  "dependencies": [],
-  "entry_point": "plugin.py",
-  "permissions": [],
-  "execution": {
-    "mode": "in_process",
-    "network": false
-  },
-  "safety": {
-    "classification": "read_only",
-    "modifies_files": false
-  },
-  "context": {}
+  ],
+  "permissions": [
+    "filesystem.read_input"
+  ],
+  "trust": "untrusted"
 }

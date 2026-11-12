@@ -1,69 +1,41 @@
 # ECU-SOFT-AGENT-PLUGINS
 
-Universal capability-based plugin registry and lazy-loading execution host for AI agents.
+Capability-based plugin registry and lazy-loading execution host for AI agents.
 
-**Goal:** Let Watcher Eye Agent discover the correct tool through metadata rather
-than scanning every plugin source file for every task.
+## Included in this rebuilt package
 
-## How it works
+- `plugin_host.py`: metadata discovery and lazy execution.
+- `plugins/`: independent plugin packages.
+- `registry/index.json`: generated capability index.
+- `registry/schemas/`: manifest schema.
+- `tools/`: plugin validation and index generation.
+- `tests/`: host and Toyota inspection tests.
+- `docs/`: architecture and security notes.
 
-1. Each plugin declares its identity and capabilities in `plugin.json`.
-2. `tools/build_index.py` generates registry indexes from manifests.
-3. `PluginHost.discover()` searches metadata without importing plugin code.
-4. `PluginHost.execute()` checks policy, then lazy-loads the selected plugin.
-5. Results use a consistent response structure.
+## Toyota plugin
+
+The Toyota plugin is extracted from the supplied TOYO LIMITER source and retains the source-derived Toyota profile catalogue (22 records including the duplicate-key variants). It supports vehicle/profile identification and read-only inspection of Speed, RPM and CUT OFF data regions.
+
+**It intentionally does not implement binary modification of vehicle-control calibrations.** No speed limiter, RPM limiter or cut-off values are changed, and no output BIN is written.
 
 ## Quick start
-
-Requirements: Python 3.10+.
 
 ```bash
 python tools/validate_plugins.py
 python tools/build_index.py
-python -m pytest -q
-python plugin_host.py --list
-python plugin_host.py --discover inspect_binary --extension .bin
+python -m unittest discover -s tests -v
+python examples/discover_toyota.py
 ```
 
-## Python API
+## Execute a capability
 
 ```python
 from plugin_host import PluginHost
-
-host = PluginHost("registry/index.json")
-matches = host.discover("inspect_binary", ".bin")
-print(matches)
+host = PluginHost()
+result = host.execute("toyota.inspect_bin", file_path="sample.bin")
+print(result)
 ```
 
-The included demonstration plugin is deliberately marked `untrusted`.
-Review it before enabling it:
+## Important upstream note
 
-```python
-host = PluginHost("registry/index.json", allow_untrusted=True)
-result = host.execute("inspect_binary", file_path="sample.bin")
-```
-
-## Repository structure
-
-- `plugin_host.py`: single-file V1 host and stable initial API.
-- `registry/`: generated discovery indexes and schemas.
-- `plugins/`: independently packaged plugins.
-- `tools/`: validation and index generation.
-- `tests/`: automated tests.
-- `docs/`: architecture, security, and integration documentation.
-
-## Toyota plugin
-
-The Toyota category is reserved for the real Toyota tool. No Toyota functionality
-is fabricated in this release. Integrate the supplied source code and task
-description only after reviewing its actual behavior.
-
-## Security notice
-
-This is an extensible V1 foundation, not yet a hardened production sandbox.
-In-process plugin execution is unsafe for untrusted third-party code. See
-[SECURITY_MODEL.md](docs/SECURITY_MODEL.md).
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+This ZIP is a rebuilt, self-contained baseline following the known upstream repository layout and documented V1 behavior. It is not a verified byte-for-byte clone of the latest GitHub branch. The GitHub checkout was unreachable from the build runtime, so compare/merge the included host and schema with the live upstream repository before replacing it.
