@@ -1,0 +1,12 @@
+{
+  "id": "example_binary_inspector",
+  "name": "Example Binary Inspector",
+  "version": "1.0.0",
+  "description": "Example read-only binary file metadata inspector.",
+  "category": "binary",
+  "supported_extensions": [".bin"],
+  "entry_point": "inspector:execute",
+  "capabilities": [{"id": "binary.inspect_metadata", "action": "inspect_metadata", "description": "Return file size and SHA-256 for a binary file.", "input": {"file_path": "string"}, "mode": "read"}],
+  "permissions": ["filesystem.read_input"],
+  "trust": "untrusted"
+}

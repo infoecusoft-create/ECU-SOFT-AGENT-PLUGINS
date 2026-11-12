@@ -1,0 +1,1 @@
+"""ECU SOFT Hybrid Registry."""

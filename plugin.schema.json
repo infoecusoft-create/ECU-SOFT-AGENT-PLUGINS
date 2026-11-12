@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["id","name","version","description","category","supported_extensions","entry_point","capabilities"],
+  "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "version": {"type": "string"}, "description": {"type": "string"}, "category": {"type": "string"}, "supported_extensions": {"type": "array", "items": {"type": "string"}}, "entry_point": {"type": "string"}, "capabilities": {"type": "array", "items": {"type": "object", "required": ["id","action","description","mode"], "properties": {"id": {"type": "string"}, "action": {"type": "string"}, "description": {"type": "string"}, "mode": {"enum": ["read"]}, "input": {"type": "object"}}}}, "permissions": {"type": "array", "items": {"type": "string"}}, "trust": {"type": "string"}}
+}

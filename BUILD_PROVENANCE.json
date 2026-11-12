@@ -1,0 +1,17 @@
+{
+  "build": "ECU SOFT Hybrid Registry snapshot",
+  "upstream": "infoecusoft-create/ECU-SOFT-AGENT-PLUGINS",
+  "upstream_branch": "main",
+  "upstream_retrieval": "Selected source files individually retrieved through connected GitHub integration",
+  "full_tree_archive": false,
+  "original_toyota_calibration_source_in_upstream_snapshot": false,
+  "preserved_toyota_read_only_inspector": true,
+  "preserved_toyota_profile_records": 22,
+  "added": ["read-only local Registry HTTP API", "MCP stdio adapter", "REST catalog client", "offline JSON snapshot fallback", "API and adapter tests"],
+  "notes": [
+    "The upstream README describes the repository as a rebuilt V1 baseline, not a byte-for-byte clone of a current source tree.",
+    "The Toyota implementation available in the retrieved tree is read-only; requested original calibration modification source was not present.",
+    "No changes were pushed to GitHub because creating a feature branch was denied by the GitHub integration.",
+    "ZIP contains the source files that were retrievable and an additive implementation; it is not a complete clone of uninspected upstream files."
+  ]
+}
