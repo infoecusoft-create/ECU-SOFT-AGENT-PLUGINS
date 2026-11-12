@@ -1,0 +1,8 @@
+{
+  "algorithm": "sha256",
+  "plugins": {
+    "example.binary.inspector": {
+      "entry_point_sha256": "f2d4c2a5637d88e20c7c7200c8402a4aa2d93cfe2d829e533d84e46d9d329c6a"
+    }
+  }
+}

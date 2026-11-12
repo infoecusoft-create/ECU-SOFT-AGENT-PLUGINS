@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "registry_version",
+    "plugins"
+  ],
+  "properties": {
+    "registry_version": {
+      "type": "string"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "entry_point",
+          "root"
+        ]
+      }
+    }
+  }
+}

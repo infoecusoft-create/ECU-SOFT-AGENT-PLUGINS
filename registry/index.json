@@ -1,0 +1,32 @@
+{
+  "generated_by": "tools/build_index.py",
+  "plugins": [
+    {
+      "capabilities": [
+        "binary_reading",
+        "file_metadata"
+      ],
+      "category": "binary",
+      "context": {},
+      "description": "Read-only demonstration plugin that reports file size and SHA-256 for binary files. It does not modify input files.",
+      "entry_point": "plugin.py",
+      "file_extensions": [
+        ".bin",
+        ".hex",
+        ".dat"
+      ],
+      "id": "example.binary.inspector",
+      "name": "Example Binary Inspector",
+      "operations": [
+        "inspect_binary"
+      ],
+      "permissions": [],
+      "root": "plugins/binary/example_binary_inspector",
+      "sha256": "f2d4c2a5637d88e20c7c7200c8402a4aa2d93cfe2d829e533d84e46d9d329c6a",
+      "status": "active",
+      "trust": "untrusted",
+      "version": "1.0.0"
+    }
+  ],
+  "registry_version": "1.0.0"
+}

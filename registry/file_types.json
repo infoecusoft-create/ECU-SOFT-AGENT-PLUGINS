@@ -1,0 +1,11 @@
+{
+  ".bin": [
+    "example.binary.inspector"
+  ],
+  ".dat": [
+    "example.binary.inspector"
+  ],
+  ".hex": [
+    "example.binary.inspector"
+  ]
+}
