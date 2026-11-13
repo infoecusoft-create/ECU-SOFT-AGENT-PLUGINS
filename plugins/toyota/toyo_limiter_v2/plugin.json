@@ -31,4 +31,5 @@
     "filesystem.read_input"
   ],
   "trust": "untrusted"
+  ,"private_source": {"repository":"infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS","artifact_path":"PRIVATE_Toyo_Limiter_v2_clean_candidate.zip","sha256":"5d36a7132e1abc11b3cb34b4f9a3cddfb982de8ab77ba95084f5fb5ab8593431","archive_prefix":"toyo_limiter_v2/"}
 }
