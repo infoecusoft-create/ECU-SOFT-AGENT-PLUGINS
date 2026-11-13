@@ -1,0 +1,28 @@
+{
+  "id": "ecu_file_integrity",
+  "name": "ECU SOFT File Integrity",
+  "version": "0.1.0",
+  "description": "Read-only SHA-256 and byte-count verification of an authorized local binary file",
+  "category": "binary",
+  "supported_extensions": [
+    ".bin",
+    ".ori",
+    ".mod",
+    ".dat"
+  ],
+  "entry_point": "file_hash_plugin:execute",
+  "capabilities": [
+    {
+      "id": "ecusoft.file_sha256",
+      "action": "sha256",
+      "description": "Calculate SHA-256 digest and byte size of a local file without modifying it",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    }
+  ],
+  "permissions": [
+    "filesystem:read"
+  ]
+}
