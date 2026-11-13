@@ -1,127 +1,104 @@
-# ECU SOFT Tools — Local MCP v0.2.1
+# ECU SOFT Tools — Local MCP Setup (v0.4.1)
 
-**Free preview · Local Python MCP · Windows, Linux and macOS**
+**Current desktop package:** [ECU-SOFT-Tools-Local-MCP-v0.4.1.mcpb](ECU-SOFT-Tools-Local-MCP-v0.4.1.mcpb)  
+**Integrity:** [SHA256SUMS-v0.4.1.txt](SHA256SUMS-v0.4.1.txt)  
+**Repository:** https://github.com/infoecusoft-create/ECU-SOFT-AGENT-PLUGINS
 
-Official repository: https://github.com/infoecusoft-create/ECU-SOFT-AGENT-PLUGINS
-
-**Download:** [ECU-SOFT-Tools-Local-MCP-v0.2.1.mcpb](ECU-SOFT-Tools-Local-MCP-v0.2.1.mcpb)
-
-## What does it do?
-
-ECU SOFT Tools is a locally launched MCP server for AI agents. It discovers tools from the official GitHub repository and exposes their metadata, inputs and read-only execution methods. At release: 2 Python plugins and 6 capabilities (binary metadata and Toyota BIN analysis). The GitHub catalog can grow without replacing the MCP server.
-
-**IMPORTANT: this is local stdio MCP, not a hosted cloud connector.** Your agent launches Python on the user's own computer. There is no HTTPS remote MCP server URL. Live catalog refresh needs outbound Internet to GitHub; offline fallback metadata is bundled. Files are not uploaded merely by listing tools.
-
-Six MCP functions: `ecusoft_list_tools`, `ecusoft_get_tool`, `ecusoft_sync`, `ecusoft_run_local`, `ecusoft_run_github` and `ecusoft_remote_result`. The optional GitHub Actions functions require a separately configured workflow and credentials; they are **not enabled by default** and are not needed for local use.
-
-**Security:** `allow_local_execution=false` by default. Catalog lookup and sync work without executing downloaded Python. Running downloaded code requires opting in and approving the individual tool. This is **not an OS sandbox**. Review third-party code and file access permissions before enabling execution.
+ECU SOFT Tools provides a local, dynamically extensible MCP server. It exposes one independently callable MCP tool for each registered capability in the GitHub catalog. You install the desktop bundle once and new compatible capabilities are discovered by synchronization rather than adding another bundle per tool.
 
 ## Requirements
 
-- Python 3.10+ (`python3` on Linux/macOS; `python` on Windows).
-- Local desktop agent with **MCP stdio** support.
-- Internet to refresh catalog (cached/seed catalog usable offline).
+- Python 3.10 or newer installed on the device that runs the MCP server.
+- A Desktop AI agent with stdio MCP support or compatible MCPB extension support.
+- Outbound internet to access the public GitHub catalog and download newly published engine packages. Previously verified/cached tools can be available offline.
+- Explicit operator permission for local publisher-code execution.
 
-## Installation by application
+**This is a local stdio MCP server, not a public HTTPS Remote MCP URL.** A VPS-based remote MCP endpoint is a separate deployment.
 
-### Watcher Eye — verified
+## Watcher — already built in
 
-1. Download the `.mcpb` file without extracting.
-2. **Plugins → Add → Install MCPB bundle → Choose File → Preview**.
-3. Keep **Allow local Python tool execution = false** at first.
-4. **Install → Use in chat** next to ECU SOFT Tools.
-5. Ask: "Call ecusoft_list_tools and show catalog.source, catalog.commit, any warning, and all tool IDs. Do not run Python tools."
+ECU SOFT Tools comes installed as a **built-in Watcher plugin**. Do not manually add another ECU SOFT MCPB or create a duplicate connection.
 
-Actual Watcher test confirmed local MCP tool invocation and GitHub live catalog sync after the v0.2.1 fix.
+Watcher built-in **v0.4.1** exposes compatible tools through the ordinary provider tool catalog, supports read/write modes, and runs publisher code in a disposable Docker container.
 
-### Claude Desktop — custom desktop extension
+- Conversation source files are mounted read-only.
+- The output location for write operations is a separate per-operation folder, under `outputs/ecusoft/`, mounted at `/results` in the container.
+- The provider receives candidate file paths and SHA-256 digests in the tool result.
+- No direct ECU flashing. Invalid or unsupported ECU profiles do not generate candidates.
 
-**Settings → Desktop app → Manage (Extensions) → Advanced settings → Install Extension…** and select the `.mcpb` file. Review and approve local execution; restart if tools don't appear. This is **not** the remote connectors URL screen.
+When a new plugin manifest appears, the built-in catalog refreshes. The active provider may need the next tool catalog refresh to see it.
 
-Official instructions: https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop
+## Other compatible desktop agents
 
-### Other stdio agents: extract the MCPB first
+Some Desktop apps support importing an MCPB directly through their extension or local MCP settings. Import the `.mcpb` package once, follow the app's confirmation prompts, and verify that the ECU SOFT tools appear.
 
-The MCPB is a ZIP-format bundle. Extract it once to a permanent location:
+If the host only supports explicit stdio commands, extract the MCPB (it is ZIP-format) into a persistent directory:
 
 ```bash
 mkdir -p ~/ecu-soft-tools
-python3 -m zipfile -e ECU-SOFT-Tools-Local-MCP-v0.2.1.mcpb ~/ecu-soft-tools
+python3 -m zipfile -e ECU-SOFT-Tools-Local-MCP-v0.4.1.mcpb ~/ecu-soft-tools
 ```
 
-Local MCP command:
+Then register a local MCP server with executable `python3` and argument:
 
-```bash
-python3 /absolute/path/to/ecu-soft-tools/runtime/mcp_server.py
+```text
+/absolute/path/to/ecu-soft-tools/runtime/mcp_server.py
 ```
 
-The agent (MCP client) starts the process; it is not an ordinary interactive Python chat.
+On Windows, use a suitable Python executable such as `python.exe` with the absolute Windows path to the extracted `runtime\mcp_server.py` file. Follow the host application's own MCP setup instructions—support and exact menus differ between vendors.
 
-**ChatGPT Desktop** (supported desktop setup): Settings → MCP servers → Add server → **STDIO**. Set command `python3` and argument to the absolute `runtime/mcp_server.py` path; save and restart, inspect `/mcp`. **ChatGPT Web/mobile cannot directly run this local MCPB.**
+A model runner that does not implement MCP directly needs an MCP-capable agent frontend.
 
-Docs: https://learn.chatgpt.com/docs/extend/mcp
+## Discovering new tools
 
-**Codex CLI:**
+The server responds to the standard MCP `tools/list` call. Each plugin capability from `plugins/**/plugin.json` appears by its unique tool ID (for example, `iveco.list_supported_systems` or `ecusoft.file_sha256`).
 
-```bash
-codex mcp add ecusoft -- python3 /absolute/path/to/ecu-soft-tools/runtime/mcp_server.py
-codex mcp list
-```
+The original six `ecusoft_*` management commands remain for backward compatibility:
 
-Equivalent `~/.codex/config.toml`:
+- `ecusoft_list_tools`, `ecusoft_get_tool`, `ecusoft_sync`
+- `ecusoft_run_local`, `ecusoft_run_github`, `ecusoft_remote_result`
 
-```toml
-[mcp_servers.ecusoft]
-command = "python3"
-args = ["/absolute/path/to/ecu-soft-tools/runtime/mcp_server.py"]
-```
+The optional GitHub Actions commands require separately configured GitHub workflow credentials. Local execution does not depend on them.
 
-**Claude Code:**
+The server checks the GitHub catalog every five minutes after MCP initialization. Call `ecusoft_sync` to check immediately. Compatible hosts receive `notifications/tools/list_changed`; other hosts may need **Refresh tools** or **Reconnect**. No MCPB reinstall is needed merely because a new compatible tool was added.
 
-```bash
-claude mcp add --transport stdio --scope user ecusoft -- python3 /absolute/path/to/ecu-soft-tools/runtime/mcp_server.py
-```
+A standalone Python file does not automatically become a safe, callable tool: each plugin needs a valid `plugin.json` with an ID, entry point, typed input schema, operation mode, and verified executable distribution.
 
-Use `/mcp` in Claude Code to inspect it. See https://support.claude.com/en/articles/14554922-claude-code-user-faq
+## Reading and editing files
 
-**OpenCode:** add to `opencode.json`, then restart:
+The Desktop MCPB v0.4.1 supports both `read` and `write` capability modes. For candidate creation with the IVECO tool, a typical call requires:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "mcp": {
-    "ecusoft": {
-      "type": "local",
-      "command": ["python3", "/absolute/path/to/ecu-soft-tools/runtime/mcp_server.py"],
-      "enabled": true
-    }
-  }
+  "file_path": "/absolute/path/to/original.bin",
+  "speed_kmh": 120,
+  "approved": true,
+  "output_path": "/absolute/path/to/new_candidate.bin",
+  "approve_code_execution": true
 }
 ```
 
-Official docs: https://opencode.ai/docs/mcp-servers/
+This example describes parameters, **not a request to modify a real vehicle**. The particular operation succeeds only on a compatible, verified software profile. The candidate must be a new file; the original must not be overwritten.
 
-**Ollama / local LLMs:** Ollama is a **model runner**, not the MCP client that installs this extension. Use an MCP-capable agent such as OpenCode configured with an Ollama model, then register ECU SOFT as local MCP there. `ollama run` alone does not expose these tools. Open WebUI may need an stdio-to-HTTP adapter: https://docs.openwebui.com/features/extensibility/mcp/
+Local execution is disabled by default until enabled in the host settings. The host should enforce actual user approval for each sensitive call. Boolean inputs alone are not proof of consent. **Standalone desktop Python execution is not sandboxed at operating-system level** and runs with the local user's permissions.
 
-**Windows:** substitute `python` for `python3` and an absolute Windows path, e.g. `C:\ECUSoft\ecu-soft-tools\runtime\mcp_server.py`. The MCPB manifest includes a Windows Python command override.
+Watcher is different: it includes the isolated Docker filesystem routing described above. The standalone Desktop MCPB does not gain the Watcher sandbox automatically.
 
-## Verify and troubleshoot
+## Verification and troubleshooting
 
-Ask the model to invoke `ecusoft_list_tools`; inspect `catalog.source`. `github-manifests` means the live GitHub catalog was successfully loaded; `offline`/`seed` means cached data and may include a warning. At time of publication there are 2 indexed plugins with 6 capabilities, but the number may grow.
+After installation, ask the agent to list all ECU SOFT tool IDs. The current catalog has **4 plugins, 30 capabilities and 36 MCP commands** (including the management commands).
 
-A successful installation alone does not prove live GitHub sync. If tools are missing, inspect your agent's MCP server log, check the Python executable/path, and restart the agent. Do not switch a local stdio command into a remote MCP URL field.
+If a tool is missing, request `ecusoft_sync`; inspect the server logs for any GitHub rate limit, stale cache, Python invocation or package verification error. Some clients need a manual catalog refresh. An unsupported binary profile may correctly reject a requested Candidate operation.
 
-The product is **free preview** now; subscriptions are not enabled. Execution stays on the user's device by default; optional GitHub Actions (if separately set up) is a distinct remote mode.
+Use a **synthetic test file** to check file creation before working with any genuine ECU dump. Check the candidate size, checksum, output path and the original source digest.
 
-## دليل الاستخدام بالعربية
+## بالعربي
 
-**ECU SOFT Tools خادم MCP بيشتغل محليًا على جهازك، مش على سيرفر سحابي.** بيتصل بـGitHub لتحديث قائمة الأدوات، لكن تنفيذ Python المحلي مقفول افتراضيًا لحد موافقة المستخدم.
+- **Watcher:** ECU SOFT موجودة فيه كإضافة Built-in أساسية. مش محتاج تثبيت MCPB أو توصيلها مرة تانية.
+- **أي Desktop Agent متوافق:** حمّل v0.4.1 وثبّته مرة واحدة، وبعد كده الأدوات الجديدة تتسجل عن طريق تحديث الفهرس.
+- **الوظائف:** القراءة والتعديل مدعومان. أدوات IVECO الـ23 بتظهر للـProvider، والتسع وظائف الخاصة بالتعديل ممكن تنشئ Candidate مع ملف BIN متوافق.
+- **الملف الأصلي:** لا يتم استبداله. Watcher يحفظ النتيجة في `outputs/ecusoft/` داخل مساحة المحادثة.
+- **المزامنة:** عند بعض البرامج تحتاج Refresh أو Reconnect لإظهار أداة جديدة، من غير إعادة تثبيت.
+- **الأونلاين:** Remote MCP عبر HTTPS يحتاج تشغيل بوابة VPS منفصلة؛ مش موجود كعنوان عام لحد دلوقتي.
 
-- **Watcher:** Plugins → Add → Install MCPB bundle → Preview → Install → Use in chat.
-- **Claude Desktop:** Settings → Desktop app → Extensions → Advanced settings → Install Extension… ثم اختار ملف `.mcpb`.
-- **ChatGPT Desktop / Codex / Claude Code / OpenCode:** فك الحزمة في مجلد ثابت واربط `python3 /absolute/path/runtime/mcp_server.py` بصفة **local stdio MCP**.
-- **Ollama:** لازم Agent يدعم MCP ويشغّل موديل Ollama، مش Ollama وحده.
-- **ChatGPT Web أو Claude Web:** مش بيشغّلوا هذا الخادم المحلي مباشرة.
-- **أول اختبار:** اطلب `ecusoft_list_tools` وتأكد من `catalog.source`؛ ما تشغّلش ملفات BIN في اختبار التثبيت.
-
-© ECU SOFT · v0.2.1
+© ECU SOFT — v0.4.1
