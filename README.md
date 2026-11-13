@@ -8,7 +8,6 @@
 
 **The original rule remains: install the MCPB once.** It refreshes capability definitions from the official GitHub catalog. For tools whose executable sources are available through its configured downloader, the client fetches and verifies each tool as needed. Adding a compatible public tool does not require rebuilding the MCPB.
 
-**IMPORTANT CORRECTION (2026-11-13): v0.3.0 is NOT the recommended release.** Its bundled-engine design accidentally made new executable tools depend on upgrading the MCPB, contrary to the original dynamic-update requirement. Do not migrate to v0.3.0 based on the former instructions. Existing users of the dynamic MCPB should not replace their installation for this release.
 
 ## Current tool catalog
 
@@ -38,11 +37,10 @@ A user-downloadable MCPB or tool package may contain code; users who receive it 
 
 Execution of downloaded Python requires host permission and per-call approval; this is **not an OS sandbox**. Candidate files must never overwrite the original BIN. No ECU flashing is implemented by the MCPB.
 
-**Status:** Dynamic v0.2.1 remains the recommended engine. v0.3.0 is an experimental superseded bundle retained for traceability, not a required upgrade.
 
 ## بالعربية
 
-**التصحيح:** الإصدار الموصى به حاليًا هو **MCPB v0.2.1 الديناميكي**. تثبّته مرة واحدة ويحدّث كتالوج الأدوات تلقائيًا من GitHub. نشر v0.3.0 كمحرك ثابت كان تغييرًا غير مطلوب؛ **لا تحدّث إلى v0.3.0** لهذا السبب.
+**الإصدار الموصى به حاليًا هو MCPB v0.2.1 الديناميكي.** ثبّته مرة واحدة، ويقدر يحدّث كتالوج الأدوات من GitHub. اكتشاف أداة جديدة لا يضمن تشغيلها من غير وجود مصدر تنفيذي متاح.
 
 أدوات Toyota وBinary القديمة عندها سورس متاح للتنزيل حسب التصميم الأصلي. تعريف **IVECO Suite Pro** ظهر في الكتالوج، لكن تشغيل سورسها الخاص تلقائيًا **ليس جاهزًا**. هنحافظ على الفصل بين Public وPrivate، وما نغيّرش طريقة التوزيع من غير قرار صريح.
 
