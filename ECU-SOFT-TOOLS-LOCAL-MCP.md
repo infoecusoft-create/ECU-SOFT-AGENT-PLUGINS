@@ -66,7 +66,9 @@ A standalone Python file does not automatically become a safe, callable tool: ea
 
 ## Reading and editing files
 
-The Desktop MCPB v0.4.1 supports both `read` and `write` capability modes. For candidate creation with the IVECO tool, a typical call requires:
+The Desktop MCPB v0.4.1 supports both `read` and `write` capability modes. New live example: ecusoft.file_audit_report is a separately published write capability that reads an input file and writes a SHA-256/size JSON report to a new output file. Watcher discovered it automatically and generated an artifact without source edits or another MCPB install.
+
+For candidate creation with the IVECO tool, a typical call requires:
 
 ```json
 {
@@ -86,7 +88,7 @@ Watcher is different: it includes the isolated Docker filesystem routing describ
 
 ## Verification and troubleshooting
 
-After installation, ask the agent to list all ECU SOFT tool IDs. The current catalog has **4 plugins, 30 capabilities and 36 MCP commands** (including the management commands).
+After installation, ask the agent to list all ECU SOFT tool IDs. The current catalog has **5 plugins, 31 capabilities and 37 MCP commands** (including the management commands).
 
 If a tool is missing, request `ecusoft_sync`; inspect the server logs for any GitHub rate limit, stale cache, Python invocation or package verification error. Some clients need a manual catalog refresh. An unsupported binary profile may correctly reject a requested Candidate operation.
 
