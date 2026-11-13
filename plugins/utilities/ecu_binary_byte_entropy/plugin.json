@@ -1,0 +1,32 @@
+{
+  "id": "ecu_binary_byte_entropy",
+  "name": "ECU SOFT Binary Byte Entropy Report",
+  "version": "1.0.0",
+  "description": "Generate downloadable SHA256 and Shannon byte entropy audit report for a binary file without changing it",
+  "category": "utilities",
+  "supported_extensions": [
+    ".bin",
+    ".ori",
+    ".mod",
+    ".dat",
+    ".txt",
+    ".csv"
+  ],
+  "entry_point": "binary_entropy_plugin:execute",
+  "permissions": [
+    "filesystem:read",
+    "filesystem:write_candidate"
+  ],
+  "capabilities": [
+    {
+      "id": "ecusoft.byte_entropy_report",
+      "action": "entropy_report",
+      "description": "Read a file and create a new JSON byte-frequency histogram, SHA256 and entropy report",
+      "mode": "write",
+      "input": {
+        "file_path": "string",
+        "output_path": "string"
+      }
+    }
+  ]
+}
