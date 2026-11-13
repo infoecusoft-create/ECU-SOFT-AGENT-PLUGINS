@@ -1,0 +1,32 @@
+{
+  "id": "ecu_file_audit_report",
+  "name": "ECU SOFT File Audit Report",
+  "version": "1.0.0",
+  "description": "Generate an independent JSON audit report showing a file's SHA-256 and size",
+  "category": "utilities",
+  "supported_extensions": [
+    ".bin",
+    ".dat",
+    ".ori",
+    ".mod",
+    ".txt",
+    ".csv"
+  ],
+  "entry_point": "file_audit_plugin:execute",
+  "permissions": [
+    "filesystem:read",
+    "filesystem:write_candidate"
+  ],
+  "capabilities": [
+    {
+      "id": "ecusoft.file_audit_report",
+      "action": "audit_to_json",
+      "description": "Read an authorized file and create a new JSON SHA-256 audit report without modifying its input",
+      "mode": "write",
+      "input": {
+        "file_path": "string",
+        "output_path": "string"
+      }
+    }
+  ]
+}
