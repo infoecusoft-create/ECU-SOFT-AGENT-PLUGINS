@@ -1,8 +1,8 @@
 {
   "id": "toyo_limiter_v2",
-  "name": "Toyota Toyo Limiter v2 — Source-Verified BIN Inspector",
-  "version": "0.1.0",
-  "description": "Read-only source-derived inspection of Toyota BIN files from the owner's Toyo Limiter v2.1.0 calibration profiles. Reports raw speed bytes, RPM observations, CUT-off signature evidence, exact offsets and SHA-256; refuses ambiguous profile matches and does not calculate checksums. Headless; no licensing, tokens, users, private stock vault or external network access.",
+  "name": "Toyota Toyo Limiter v2 — BIN Inspection and Candidate Editing",
+  "version": "0.2.0",
+  "description": "Source-derived Toyota BIN inspection and candidate-only editing: change raw speed-limiter bytes, raw RPM limiter values, or apply the source-defined CUT OFF byte pattern. File identification must be unambiguous. Creates a separate candidate file; never overwrites input or flashes. Physical units and checksum correction are NOT verified. Independent validation is mandatory before any flash.",
   "category": "toyota",
   "supported_extensions": [
     ".bin"
@@ -25,11 +25,75 @@
       "description": "List Toyo Limiter v2 calibration profile identifiers and expected BIN sizes from the authenticated source-derived profile manifest; no data is modified.",
       "input": {},
       "mode": "read"
+    },
+    {
+      "id": "toyota.toyo_limiter_v2.set_speed_candidate",
+      "action": "candidate_bin",
+      "description": "Generate a separate BIN candidate changing raw speed limiter byte(s), whole number 0..255, based on source patterns. Not a confirmed km/h value. Checksum not recalculated; NOT flash-ready.",
+      "input": {
+        "file_path": "string",
+        "speed_raw": "number",
+        "output_path": "string",
+        "profile_id": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "toyota.toyo_limiter_v2.set_rpm_candidate",
+      "action": "candidate_bin",
+      "description": "Generate a separate BIN candidate changing raw RPM limiter 16-bit little-endian value, whole number 0..65535. Real RPM scaling unverified. Checksum not recalculated; NOT flash-ready.",
+      "input": {
+        "file_path": "string",
+        "rpm_raw": "number",
+        "output_path": "string",
+        "profile_id": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "toyota.toyo_limiter_v2.apply_cutoff_candidate",
+      "action": "candidate_bin",
+      "description": "Generate a separate BIN candidate applying the original CUT OFF pattern operation (pass cutoff=true) for supported profiles. Does not prove an exact RPM hard-cut strategy; checksum not recalculated; NOT flash-ready.",
+      "input": {
+        "file_path": "string",
+        "cutoff": "boolean",
+        "output_path": "string",
+        "profile_id": "string?"
+      },
+      "mode": "write"
+    },
+    {
+      "id": "toyota.toyo_limiter_v2.create_candidate",
+      "action": "candidate_bin",
+      "description": "Generate a separate BIN candidate with any combination of raw speed (0..255), raw RPM (0..65535), or source-defined CUT OFF (cutoff=true). Supply at least one change. No fan-temperature change, checksum fix or flash. NOT flash-ready.",
+      "input": {
+        "file_path": "string",
+        "output_path": "string",
+        "speed_raw": "number?",
+        "rpm_raw": "number?",
+        "cutoff": "boolean?",
+        "profile_id": "string?"
+      },
+      "mode": "write"
     }
   ],
   "permissions": [
-    "filesystem.read_input"
+    "filesystem.read_input",
+    "filesystem.write_output_requires_approval"
   ],
-  "trust": "untrusted"
-  ,"private_source": {"repository":"infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS","artifact_path":"PRIVATE_Toyo_Limiter_v2_clean_candidate.zip","sha256":"5d36a7132e1abc11b3cb34b4f9a3cddfb982de8ab77ba95084f5fb5ab8593431","archive_prefix":"toyo_limiter_v2/"}
+  "trust": "untrusted",
+  "private_source": {
+    "repository": "infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS",
+    "artifact_path": "PRIVATE_Toyo_Limiter_v2_clean_candidate.zip",
+    "sha256": "5d36a7132e1abc11b3cb34b4f9a3cddfb982de8ab77ba95084f5fb5ab8593431",
+    "archive_prefix": "toyo_limiter_v2/"
+  },
+  "execution": {
+    "local_only": true,
+    "automatic_flash": false,
+    "overwrite_input": false,
+    "write_requires_explicit_approval": true,
+    "checksum_recalculated": false,
+    "output_kind": "candidate_only"
+  }
 }
