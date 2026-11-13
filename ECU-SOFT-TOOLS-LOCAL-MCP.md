@@ -88,7 +88,7 @@ Watcher is different: it includes the isolated Docker filesystem routing describ
 
 ## Verification and troubleshooting
 
-After installation, ask the agent to list all ECU SOFT tool IDs. The current catalog has **5 plugins, 31 capabilities and 37 MCP commands** (including the management commands).
+After installation, ask the agent to list all ECU SOFT tool IDs. The current catalog has **6 plugins, 32 capabilities and 38 MCP commands** (including the management commands).
 
 If a tool is missing, request `ecusoft_sync`; inspect the server logs for any GitHub rate limit, stale cache, Python invocation or package verification error. Some clients need a manual catalog refresh. An unsupported binary profile may correctly reject a requested Candidate operation.
 
@@ -104,3 +104,8 @@ Use a **synthetic test file** to check file creation before working with any gen
 - **الأونلاين:** Remote MCP عبر HTTPS يحتاج تشغيل بوابة VPS منفصلة؛ مش موجود كعنوان عام لحد دلوقتي.
 
 © ECU SOFT — v0.4.1
+
+
+### Verified general output attachments
+
+The independently published ecusoft.byte_entropy_report tool was discovered and downloaded automatically by Watcher. Its output JSON appeared in the normal authenticated artifact list, and download returned exact bytes in the isolated integration test. Original input remained unchanged. Prior chat replies containing only old output paths are not retroactively converted into attachments; new executions produce native downloadable files.
