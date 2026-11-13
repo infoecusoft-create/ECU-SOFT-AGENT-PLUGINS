@@ -13,7 +13,7 @@
 
 - **Toyota BIN Inspector:** 5 read-only catalog capabilities; source currently available through the original public downloader.
 - **Binary Inspector:** 1 read-only catalog capability; source currently available through the original public downloader.
-- **IVECO Suite Pro:** 23 capabilities (14 inspection; 9 candidate-edit), with 8 source-defined VCM families and Bosch EDC17CV41/EDC7UC31 detection and analysis functions. Its manifest is listed publicly, but **the original private IVECO executable engine is not available for automatic download by v0.2.1**. Catalog discovery does **not** yet mean it can be executed. Do not promise automatic private-tool execution until an authorized distribution method is explicitly approved and tested.
+- **IVECO Suite Pro:** 23 catalog capabilities (14 inspection and 9 candidate-edit). The 14 read actions now download and run through the unchanged dynamic MCPB using a SHA-256-verified binary archive and minimal loader. The nine candidate-edit actions remain blocked by the v0.2.1 execution policy, pending a separate explicitly approved write-permission implementation.
 
 **Do not confuse discovery and execution.** A manifest can appear immediately after GitHub sync while its source distribution still needs configuration. Neither the number of tools in the list nor catalog sync alone proves execution.
 
@@ -29,7 +29,7 @@
 
 ## Public catalog / private sources
 
-The **public repository** is intended for documentation, tool manifests and the user-downloadable MCPB. The separate **private source repository** stores original engineering source. Older Toyota/Binary Python files are **still present on the public branch** because v0.2.1 dynamically downloads them. Deleting these files without a compatible source-distribution path would break existing users. Keeping sources private while supporting download-and-run of newly added tools still requires a deliberately approved executable distribution mechanism.
+The **public repository** is intended for documentation, tool manifests and the user-downloadable MCPB. The separate **private source repository** stores original engineering source. Older Toyota/Binary Python files are **still present on the public branch** because v0.2.1 dynamically downloads them. Deleting these files without a compatible source-distribution path would break existing users. IVECO now demonstrates the approved dynamic distribution pattern: a minimal public verification adapter plus a versioned, hash-pinned binary archive; the original engineering source remains in the private repository. The distributed archive can be extracted by recipients and is not represented as secret.
 
 A user-downloadable MCPB or tool package may contain code; users who receive it can inspect it. The project does **not** claim to prevent extraction of code given to users.
 
@@ -42,6 +42,6 @@ Execution of downloaded Python requires host permission and per-call approval; t
 
 **الإصدار الموصى به حاليًا هو MCPB v0.2.1 الديناميكي.** ثبّته مرة واحدة، ويقدر يحدّث كتالوج الأدوات من GitHub. اكتشاف أداة جديدة لا يضمن تشغيلها من غير وجود مصدر تنفيذي متاح.
 
-أدوات Toyota وBinary القديمة عندها سورس متاح للتنزيل حسب التصميم الأصلي. تعريف **IVECO Suite Pro** ظهر في الكتالوج، لكن تشغيل سورسها الخاص تلقائيًا **ليس جاهزًا**. هنحافظ على الفصل بين Public وPrivate، وما نغيّرش طريقة التوزيع من غير قرار صريح.
+أدوات Toyota وBinary متاحة للتنزيل والتنفيذ وفق صلاحيات المضيف. **IVECO Suite Pro اشتغلت فعلًا** من محرك مضغوط ومثبت البصمة ومن غير تحديث الـMCPB: الـ14 وظيفة فحص متاحة، لكن وظائف إنشاء ملفات Candidate التسع ما زالت محجوبة بسياسة التنفيذ الحالية. التشغيل يتطلب موافقة المستخدم وتفعيل السماح بالتنفيذ المحلي. السورس الأصلي محفوظ في المستودع الخاص.
 
 © ECU SOFT
