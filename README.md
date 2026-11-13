@@ -8,7 +8,7 @@ Official ECU SOFT distribution hub for local Desktop MCP and the integrated Watc
 
 **Install the Desktop MCPB once.** Compatible new tools appear in `tools/list` after catalog synchronization, without rebuilding or reinstalling the bundle. The server exposes each capability as an independent MCP command, plus six backwards-compatible management commands.
 
-The current public catalog contains **4 plugins, 30 capabilities and 36 MCP tools**.
+The current public catalog contains **5 plugins, 31 capabilities and 37 MCP tools**.
 
 | Plugin | Capabilities | Executable operations |
 | --- | ---: | --- |
@@ -16,6 +16,11 @@ The current public catalog contains **4 plugins, 30 capabilities and 36 MCP tool
 | Toyota BIN Inspector | 5 | Publisher-defined read operations |
 | Binary Inspector | 1 | Read-only metadata inspection |
 | ECU SOFT File Integrity | 1 | Read-only file SHA-256 |
+| ECU SOFT File Audit Report | 1 | Create a new JSON checksum report (write) |
+
+### Live post-install proof: November 13, 2026
+
+After v0.4.1 was released, a fifth independent plugin named **ECU SOFT File Audit Report** was added on GitHub. Watcher built-in v0.4.1, with source and MCPB unchanged, began with 35 offline MCP commands and **automatically refreshed to 37** in a clean test account. No explicit sync command was made. The new ecusoft.file_audit_report tool executed inside Docker and created a verified JSON artifact without altering the original synthetic file.
 
 ### Verified functionality
 
