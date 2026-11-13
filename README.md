@@ -8,7 +8,7 @@ Official ECU SOFT distribution hub for local Desktop MCP and the integrated Watc
 
 **Install the Desktop MCPB once.** Compatible new tools appear in `tools/list` after catalog synchronization, without rebuilding or reinstalling the bundle. The server exposes each capability as an independent MCP command, plus six backwards-compatible management commands.
 
-The current public catalog contains **5 plugins, 31 capabilities and 37 MCP tools**.
+The current public catalog contains **6 plugins, 32 capabilities and 38 MCP tools**.
 
 | Plugin | Capabilities | Executable operations |
 | --- | ---: | --- |
@@ -17,10 +17,15 @@ The current public catalog contains **5 plugins, 31 capabilities and 37 MCP tool
 | Binary Inspector | 1 | Read-only metadata inspection |
 | ECU SOFT File Integrity | 1 | Read-only file SHA-256 |
 | ECU SOFT File Audit Report | 1 | Create a new JSON checksum report (write) |
+| ECU SOFT Binary Byte Entropy Report | 1 | SHA-256, histogram and entropy report (write) |
 
 ### Live post-install proof: November 13, 2026
 
 After v0.4.1 was released, a fifth independent plugin named **ECU SOFT File Audit Report** was added on GitHub. Watcher built-in v0.4.1, with source and MCPB unchanged, began with 35 offline MCP commands and **automatically refreshed to 37** in a clean test account. No explicit sync command was made. The new ecusoft.file_audit_report tool executed inside Docker and created a verified JSON artifact without altering the original synthetic file.
+
+### Live automatic download proof — November 13, 2026
+
+A brand-new ecusoft.byte_entropy_report plugin was published after Watcher built-in v0.4.1 and its attachment integration were installed. A clean account automatically discovered it from GitHub in 6.69 seconds, without a manual sync command. Watcher downloaded the verified engine, ran it in Docker without a network connection during execution, and registered the generated JSON with the existing authenticated /api/python-artifacts/ download system. An isolated-account integration test confirmed a 200 download response with exact matching file bytes and unchanged input. The test did not click Download inside the owner's live browser session.
 
 ### Verified functionality
 
