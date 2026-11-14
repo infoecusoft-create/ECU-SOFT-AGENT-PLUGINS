@@ -1,8 +1,15 @@
 {
   "capabilities": [
     {
+      "action": "list_supported",
+      "description": "List exact Siemens PCR2.1 reference patch records embedded in the original DPF core; stock identifiers are reference labels, not guaranteed compatibility.",
+      "id": "vw_pcr21.dpf.list_supported",
+      "input": {},
+      "mode": "read"
+    },
+    {
       "action": "inspect",
-      "description": "Read file size, SHA-256 and Siemens PCR2.1 firmware signature markers without modifying the BIN. Not proof of patch applicability.",
+      "description": "Read BIN/ORI bytes and detect Siemens PCR2.1 family/software, report SHA-256 and size using unchanged original core. No modifications.",
       "id": "vw_pcr21.dpf.inspect",
       "input": {
         "file_path": "string"
@@ -11,32 +18,44 @@
     },
     {
       "action": "preview",
-      "description": "Evaluate patch match in memory only; return reference evidence and compatibility metrics. No file output or checksum adjustment.",
+      "description": "Run original ECU Forge DPF match engine on an in-memory copy, return selected reference and compatibility evidence; no files modified.",
       "id": "vw_pcr21.dpf.preview",
       "input": {
         "file_path": "string"
       },
       "mode": "read"
+    },
+    {
+      "action": "apply_off",
+      "description": "Apply the original ECU Forge Siemens PCR2.1 DPF OFF patch engine to a supported uploaded BIN; save a SEPARATE modified BIN/ORI under /results, return output file and hashes. No checksum correction/flash. Requires host write approval.",
+      "id": "vw_pcr21.dpf.apply_off",
+      "input": {
+        "approved": "boolean?",
+        "file_path": "string",
+        "output_path": "string?"
+      },
+      "mode": "write"
     }
   ],
   "category": "vw_pcr21",
-  "description": "ECU SOFT VW Siemens PCR2.1 DPF reference analysis. Read-only initial release; candidate writes not published.",
+  "description": "Original ECU Forge Siemens PCR2.1 DPF OFF source core (unchanged, 23 embedded records) with source-derived read, detection, preview and full separate-BIN writing capabilities.",
   "entry_point": "tool:execute",
   "id": "vw_pcr21_dpf_v6_23",
-  "name": "ECU SOFT VW PCR2.1 DPF V6.23",
+  "name": "ECU SOFT VW Siemens PCR2.1 DPF OFF V6.23",
   "permissions": [
-    "filesystem.read_input"
+    "filesystem.read_input",
+    "filesystem.write_output_requires_approval"
   ],
   "private_source": {
     "archive_prefix": "vw_pcr21_dpf_v6_23/",
-    "artifact_path": "distributions/vw_pcr21_dpf_v6_23-1.0.0.zip",
+    "artifact_path": "distributions/vw_pcr21_dpf_v6_23-1.1.0.zip",
     "repository": "infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS",
-    "sha256": "77c7696b2349cd724b4908719433fe3699247f81622dd1b0fc8305382c3cff8a"
+    "sha256": "81cdb7155bf00f5bdea98e1b19119ffe0488db455abf9177a27cafef1e80a9b8"
   },
   "supported_extensions": [
     ".bin",
     ".ori"
   ],
   "trust": "untrusted",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
