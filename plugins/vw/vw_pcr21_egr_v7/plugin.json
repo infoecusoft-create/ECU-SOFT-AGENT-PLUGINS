@@ -1,8 +1,15 @@
 {
   "capabilities": [
     {
+      "action": "list_supported",
+      "description": "List exact Siemens PCR2.1 reference patch records embedded in the original EGR core; stock identifiers are reference labels, not guaranteed compatibility.",
+      "id": "vw_pcr21.egr.list_supported",
+      "input": {},
+      "mode": "read"
+    },
+    {
       "action": "inspect",
-      "description": "Read file size, SHA-256 and Siemens PCR2.1 firmware signature markers without modifying the BIN. Not proof of patch applicability.",
+      "description": "Read BIN/ORI bytes and detect Siemens PCR2.1 family/software, report SHA-256 and size using unchanged original core. No modifications.",
       "id": "vw_pcr21.egr.inspect",
       "input": {
         "file_path": "string"
@@ -11,32 +18,44 @@
     },
     {
       "action": "preview",
-      "description": "Evaluate patch match in memory only; return reference evidence and compatibility metrics. No file output or checksum adjustment.",
+      "description": "Run original ECU Forge EGR match engine on an in-memory copy, return selected reference and compatibility evidence; no files modified.",
       "id": "vw_pcr21.egr.preview",
       "input": {
         "file_path": "string"
       },
       "mode": "read"
+    },
+    {
+      "action": "apply_off",
+      "description": "Apply the original ECU Forge Siemens PCR2.1 EGR OFF patch engine to a supported uploaded BIN; save a SEPARATE modified BIN/ORI under /results, return output file and hashes. No checksum correction/flash. Requires host write approval.",
+      "id": "vw_pcr21.egr.apply_off",
+      "input": {
+        "approved": "boolean?",
+        "file_path": "string",
+        "output_path": "string?"
+      },
+      "mode": "write"
     }
   ],
   "category": "vw_pcr21",
-  "description": "ECU SOFT VW Siemens PCR2.1 EGR reference analysis. Read-only initial release; candidate writes not published.",
+  "description": "Original ECU Forge Siemens PCR2.1 EGR OFF source core (unchanged, 46 embedded records) with source-derived read, detection, preview and full separate-BIN writing capabilities.",
   "entry_point": "tool:execute",
   "id": "vw_pcr21_egr_v7",
-  "name": "ECU SOFT VW PCR2.1 EGR V7",
+  "name": "ECU SOFT VW Siemens PCR2.1 EGR OFF V7",
   "permissions": [
-    "filesystem.read_input"
+    "filesystem.read_input",
+    "filesystem.write_output_requires_approval"
   ],
   "private_source": {
     "archive_prefix": "vw_pcr21_egr_v7/",
-    "artifact_path": "distributions/vw_pcr21_egr_v7-1.0.0.zip",
+    "artifact_path": "distributions/vw_pcr21_egr_v7-1.1.0.zip",
     "repository": "infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS",
-    "sha256": "75770240baf67ebaef7c1e4989b46c332a3597e317538a31a683dfef06e45e54"
+    "sha256": "051563246f80719992c98c72b39a63543b2ffa8ec3d1e39636b0a1a17e4795a5"
   },
   "supported_extensions": [
     ".bin",
     ".ori"
   ],
   "trust": "untrusted",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
