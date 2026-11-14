@@ -1,0 +1,42 @@
+{
+  "capabilities": [
+    {
+      "action": "inspect",
+      "description": "Read file size, SHA-256 and Siemens PCR2.1 firmware signature markers without modifying the BIN. Not proof of patch applicability.",
+      "id": "vw_pcr21.dpf.inspect",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "action": "preview",
+      "description": "Evaluate patch match in memory only; return reference evidence and compatibility metrics. No file output or checksum adjustment.",
+      "id": "vw_pcr21.dpf.preview",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    }
+  ],
+  "category": "vw_pcr21",
+  "description": "ECU SOFT VW Siemens PCR2.1 DPF reference analysis. Read-only initial release; candidate writes not published.",
+  "entry_point": "tool:execute",
+  "id": "vw_pcr21_dpf_v6_23",
+  "name": "ECU SOFT VW PCR2.1 DPF V6.23",
+  "permissions": [
+    "filesystem.read_input"
+  ],
+  "private_source": {
+    "archive_prefix": "vw_pcr21_dpf_v6_23/",
+    "artifact_path": "distributions/vw_pcr21_dpf_v6_23-1.0.0.zip",
+    "repository": "infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS",
+    "sha256": "77c7696b2349cd724b4908719433fe3699247f81622dd1b0fc8305382c3cff8a"
+  },
+  "supported_extensions": [
+    ".bin",
+    ".ori"
+  ],
+  "trust": "untrusted",
+  "version": "1.0.0"
+}
