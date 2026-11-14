@@ -1,0 +1,42 @@
+{
+  "capabilities": [
+    {
+      "action": "inspect",
+      "description": "Read file size, SHA-256 and Siemens PCR2.1 firmware signature markers without modifying the BIN. Not proof of patch applicability.",
+      "id": "vw_pcr21.egr.inspect",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    },
+    {
+      "action": "preview",
+      "description": "Evaluate patch match in memory only; return reference evidence and compatibility metrics. No file output or checksum adjustment.",
+      "id": "vw_pcr21.egr.preview",
+      "input": {
+        "file_path": "string"
+      },
+      "mode": "read"
+    }
+  ],
+  "category": "vw_pcr21",
+  "description": "ECU SOFT VW Siemens PCR2.1 EGR reference analysis. Read-only initial release; candidate writes not published.",
+  "entry_point": "tool:execute",
+  "id": "vw_pcr21_egr_v7",
+  "name": "ECU SOFT VW PCR2.1 EGR V7",
+  "permissions": [
+    "filesystem.read_input"
+  ],
+  "private_source": {
+    "archive_prefix": "vw_pcr21_egr_v7/",
+    "artifact_path": "distributions/vw_pcr21_egr_v7-1.0.0.zip",
+    "repository": "infoecusoft-create/ECU-SOFT-PRIVATE-TOOLS",
+    "sha256": "75770240baf67ebaef7c1e4989b46c332a3597e317538a31a683dfef06e45e54"
+  },
+  "supported_extensions": [
+    ".bin",
+    ".ori"
+  ],
+  "trust": "untrusted",
+  "version": "1.0.0"
+}
